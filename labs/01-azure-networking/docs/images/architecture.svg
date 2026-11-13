@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Lab 01 - Azure Networking Fundamentals with Terraform</title>
+  <desc id="desc">Beginner tutorial diagram: a resource group contains a virtual network with two subnets, application 10.10.1.0/24 and management 10.10.2.0/24. Each subnet is associated with its own network security group. This is a learning exercise, not a production reference design.</desc>
+  <rect width="1200" height="620" fill="#f8fbff"/>
+  <rect x="28" y="24" width="1144" height="572" rx="24" fill="white" stroke="#e1e9f3" stroke-width="2"/>
+  <text x="58" y="72" fill="#0c2646" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="29">Lab 01 · Azure Networking Fundamentals</text>
+  <text x="58" y="105" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="19">A guided Terraform learning exercise</text>
+  <rect x="970" y="49" width="174" height="38" rx="19" fill="#e8f2ff"/>
+  <text x="1057" y="74" text-anchor="middle" fill="#175ba4" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">BEGINNER LAB</text>
+
+  <rect x="61" y="137" width="1078" height="400" rx="18" fill="#f7faff" stroke="#7994af" stroke-width="2" stroke-dasharray="9 6"/>
+  <rect x="82" y="119" width="365" height="34" rx="10" fill="#e8f2ff"/>
+  <text x="96" y="142" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">Resource Group · West Europe</text>
+
+  <rect x="100" y="180" width="1000" height="220" rx="16" fill="#e9f3ff" stroke="#2e77be" stroke-width="2"/>
+  <text x="130" y="218" fill="#12518b" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">Virtual Network</text>
+  <text x="130" y="248" fill="#3c6385" font-family="Arial, Helvetica, sans-serif" font-size="18">vnet-lab01-network-dev-weu-001  ·  10.10.0.0/16</text>
+
+  <rect x="135" y="275" width="435" height="96" rx="13" fill="#ffffff" stroke="#43a2d4" stroke-width="2"/>
+  <rect x="135" y="275" width="9" height="96" rx="4" fill="#43a2d4"/>
+  <text x="161" y="309" fill="#103b62" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Application subnet</text>
+  <text x="161" y="338" fill="#486580" font-family="Arial, Helvetica, sans-serif" font-size="18">snet-app-dev-weu-001</text>
+  <text x="161" y="358" fill="#486580" font-family="Arial, Helvetica, sans-serif" font-size="17">10.10.1.0/24</text>
+
+  <rect x="630" y="275" width="435" height="96" rx="13" fill="#ffffff" stroke="#43a2d4" stroke-width="2"/>
+  <rect x="630" y="275" width="9" height="96" rx="4" fill="#43a2d4"/>
+  <text x="656" y="309" fill="#103b62" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Management subnet</text>
+  <text x="656" y="338" fill="#486580" font-family="Arial, Helvetica, sans-serif" font-size="18">snet-mgmt-dev-weu-001</text>
+  <text x="656" y="358" fill="#486580" font-family="Arial, Helvetica, sans-serif" font-size="17">10.10.2.0/24</text>
+
+  <path d="M352 371 V437" stroke="#4c91a5" stroke-width="2.5" stroke-dasharray="7 6" fill="none"/>
+  <path d="M847 371 V437" stroke="#4c91a5" stroke-width="2.5" stroke-dasharray="7 6" fill="none"/>
+  <circle cx="352" cy="408" r="5" fill="#4c91a5"/>
+  <circle cx="847" cy="408" r="5" fill="#4c91a5"/>
+
+  <rect x="172" y="438" width="360" height="66" rx="13" fill="#e5f7ee" stroke="#2e9870" stroke-width="2"/>
+  <text x="352" y="464" text-anchor="middle" fill="#145b43" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">Network Security Group</text>
+  <text x="352" y="491" text-anchor="middle" fill="#24684f" font-family="Arial, Helvetica, sans-serif" font-size="17">nsg-app-dev-weu-001</text>
+
+  <rect x="667" y="438" width="360" height="66" rx="13" fill="#e5f7ee" stroke="#2e9870" stroke-width="2"/>
+  <text x="847" y="464" text-anchor="middle" fill="#145b43" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">Network Security Group</text>
+  <text x="847" y="491" text-anchor="middle" fill="#24684f" font-family="Arial, Helvetica, sans-serif" font-size="17">nsg-mgmt-dev-weu-001</text>
+
+  <text x="600" y="561" text-anchor="middle" fill="#61758b" font-family="Arial, Helvetica, sans-serif" font-size="17">Dashed lines = subnet-to-NSG associations · No virtual machines or custom NSG rules</text>
+  <text x="600" y="586" text-anchor="middle" fill="#7b8795" font-family="Arial, Helvetica, sans-serif" font-size="14">Educational example — not a production-ready security architecture</text>
+</svg>
