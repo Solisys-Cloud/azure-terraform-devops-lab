@@ -3,13 +3,21 @@
 **Level:** Beginner  
 **Technology:** Azure, Terraform  
 **Focus:** Networking, Infrastructure as Code, fundamentals  
+**Audience:** Engineers learning Terraform and Git-based DevOps workflows  
+**Publisher:** Solisys-Cloud, a senior Azure and Microsoft cloud engineering practice  
 **Status:** Documentation and planning (no resources deployed)
 
 ## Goal
 
 Learn how to describe and deploy a small Azure network using Terraform, with clear naming and step-by-step explanations.
 
+> **For readers:** The **Beginner** level describes this tutorial's intended audience. It does **not** describe the publisher's Azure engineering experience. This repository is an educational portfolio produced by experienced cloud professionals.
+
 ## Target architecture
+
+![Lab 01 - Azure networking architecture for a Terraform learning exercise](docs/images/architecture.svg)
+
+*Diagram: resource group, virtual network, two subnets, and subnet-to-NSG associations. Educational scope only.*
 
 | Resource | Planned name | Configuration |
 | --- | --- | --- |
@@ -46,6 +54,16 @@ By the end of this lab, you should be able to:
 | 05 | Deploy to a lab Azure subscription with manual approval | Not started |
 | 06 | Add a GitHub Actions validation workflow | Not started |
 | 07 | Troubleshooting and cleanup | Not started |
+
+## Source control: good practices from day one
+
+We use a feature/documentation branch and a **pull request** instead of pushing directly to `main`.
+
+- Check the repository [`.gitignore`](../../.gitignore) before running `terraform init`.
+- Never commit Terraform state, real `*.tfvars` values, plan files, credentials, or secrets.
+- Keep the generated `.terraform.lock.hcl` under version control.
+- Read the [Git workflow tutorial](../../docs/git-workflow.md) for a step-by-step branch/PR explanation.
+- This lab has **no automated Azure deployment**; deployment will require explicit approval.
 
 ## Prerequisites
 

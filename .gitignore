@@ -1,0 +1,37 @@
+# Terraform working directory and local state
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Local input values (may contain secrets)
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+!*.auto.tfvars.example
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform plan outputs
+*.tfplan
+*.tfplan.*
+tfplan
+tfplan.*
+*.plan
+
+# Local credentials and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.pfx
+*.key
+
+# Editor / operating system
+.DS_Store
+Thumbs.db
+
+# DO NOT ignore .terraform.lock.hcl: commit it to pin provider selections.
