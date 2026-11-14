@@ -48,12 +48,16 @@ By the end of this lab, you should be able to:
 | Step | Topic | Status |
 | --- | --- | --- |
 | 01 | Plan architecture and naming | Documented |
-| 02 | Write the Terraform configuration | Not started |
-| 03 | Validate the configuration locally | Not started |
-| 04 | Review a Terraform plan | Not started |
+| 02 | Write the Terraform configuration | Completed |
+| 03 | Validate the configuration locally | CI passed; local run pending |
+| 04 | Review a Terraform plan | Guide written; Azure plan pending |
 | 05 | Deploy to a lab Azure subscription with manual approval | Not started |
 | 06 | Add a GitHub Actions validation workflow | Not started |
 | 07 | Troubleshooting and cleanup | Not started |
+
+## Manual verification before deployment
+
+Use the [manual validation and Azure plan guide](docs/manual-validation.md) to review the configuration locally and preview changes against a dedicated test subscription. This guide does not deploy Azure resources.
 
 ## Source control: good practices from day one
 
