@@ -1,0 +1,40 @@
+# Validate the introductory Terraform lab without accessing Azure.
+# The workflow has read-only permissions and never runs apply or destroy.
+name: Lab 01 - Terraform Validation
+
+on:
+  pull_request:
+    paths:
+      - "labs/01-azure-networking/**"
+      - ".github/workflows/terraform-lab01-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Format, initialize and validate
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: labs/01-azure-networking
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+
+      - name: Check formatting
+        run: terraform fmt -check -recursive
+
+      - name: Initialize without a remote backend
+        run: terraform init -backend=false -input=false -no-color
+
+      - name: Validate configuration
+        run: terraform validate -no-color
