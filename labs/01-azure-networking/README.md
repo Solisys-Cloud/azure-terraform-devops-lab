@@ -3,15 +3,12 @@
 **Level:** Beginner  
 **Technology:** Azure, Terraform  
 **Focus:** Networking, Infrastructure as Code, fundamentals  
-**Audience:** Engineers learning Terraform and Git-based DevOps workflows  
-**Publisher:** Solisys-Cloud, a senior Azure and Microsoft cloud engineering practice  
+**Audience:** Beginners learning Terraform and Git-based DevOps workflows  
 **Status:** Documentation and planning (no resources deployed)
 
 ## Goal
 
 Learn how to describe and deploy a small Azure network using Terraform, with clear naming and step-by-step explanations.
-
-> **For readers:** The **Beginner** level describes this tutorial's intended audience. It does **not** describe the publisher's Azure engineering experience. This repository is an educational portfolio produced by experienced cloud professionals.
 
 ## Target architecture
 
@@ -48,7 +45,7 @@ By the end of this lab, you should be able to:
 | Step | Topic | Status |
 | --- | --- | --- |
 | 01 | Plan architecture and naming | Documented |
-| 02 | Write the Terraform configuration | Not started |
+| 02 | Write the Terraform configuration | Documented |
 | 03 | Validate the configuration locally | Not started |
 | 04 | Review a Terraform plan | Not started |
 | 05 | Deploy to a lab Azure subscription with manual approval | Not started |
@@ -71,6 +68,35 @@ We use a feature/documentation branch and a **pull request** instead of pushing 
 - Terraform CLI, Git, and a code editor for local exercises.
 - Azure subscription access **only when you decide to deploy**.
 
+## Choosing an Azure subscription (AzureRM v5)
+
+For `terraform plan` and `terraform apply`, the AzureRM provider needs a subscription ID. In provider v5, it can come from the `subscription_id` provider setting, the `ARM_SUBSCRIPTION_ID` environment variable, or the default subscription selected by Azure CLI. `terraform validate` does not require the subscription ID.
+
+This lab uses `provider "azurerm" { features {} }` and does not hard-code a subscription ID. Before planning a deployment, sign in and **check your intended subscription**:
+
+```sh
+az login
+az account show --query "{Name:name, ID:id}" --output table
+az account set --subscription "<your-subscription-id>"
+az account show --query "{Name:name, ID:id}" --output table
+```
+
+Alternatively, explicitly choose a subscription for the current terminal session:
+
+```sh
+# Bash
+export ARM_SUBSCRIPTION_ID="<your-subscription-id>"
+```
+
+```powershell
+# PowerShell
+$env:ARM_SUBSCRIPTION_ID = "<your-subscription-id>"
+```
+
+If `ARM_SUBSCRIPTION_ID` is set, check its value as well as the Azure CLI selection. Never assume the CLI default is the subscription Terraform will use.
+
+**Official references:** [AzureRM v5 provider](https://registry.terraform.io/providers/hashicorp/azurerm/5.11.0/docs) | [Microsoft Azure CLI subscription selection](https://learn.microsoft.com/en-us/azure/developer/terraform/authenticate-to-azure-with-microsoft-account)
+
 ## Learning notes
 
 - **Terraform provider:** a plugin that manages a remote API, such as Azure Resource Manager.
@@ -86,6 +112,8 @@ This README does **not** deploy anything. GitHub automation will begin with vali
 ## Portfolio conventions
 
 See [Solisys-Cloud naming conventions](../../docs/naming-conventions.md).
+
+Maintained by Olivier Lumeau, Solisys SRL
 
 ## Official references
 
