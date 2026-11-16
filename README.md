@@ -18,8 +18,7 @@ From a first network to a versioned, reusable module.
 | --- | --- | --- | --- | --- |
 | 1 | [Lab 01 - Azure Networking Fundamentals with Terraform](labs/01-azure-networking/README.md) | Build a small Azure network by hand: resource group, virtual network, subnets, and network security groups. | Beginner | Deployed and tested |
 | 2 | [Lab 02 - Terraform Reusable Modules](labs/02-terraform-reusable-modules/README.md) | Turn that network into a reusable module and deploy it for two environments. | Beginner to intermediate | Deployed and tested |
-
-Planned: Lab 03 - Module Versioning.
+| 3 | [Lab 03 - Module Versioning](labs/03-module-versioning/README.md) | Consume the network module from Git with a pinned version, then upgrade it from v1.0.0 to v1.1.0. | Intermediate | Not yet deployed |
 
 ### Track 2 - DevOps and automation
 
