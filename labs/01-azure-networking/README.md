@@ -4,6 +4,7 @@
 **Technology:** Azure, Terraform  
 **Focus:** Networking, Infrastructure as Code, fundamentals  
 **Audience:** Beginners learning Terraform and Git-based DevOps workflows  
+**Track:** Terraform foundations, step 1  
 **Status:** Deployed and tested in a lab subscription
 
 ## Goal
@@ -127,3 +128,9 @@ Maintained by Olivier Lumeau, Solisys SRL
 
 - [Terraform documentation](https://developer.hashicorp.com/terraform/docs)
 - [Azure resource naming recommendations](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations)
+
+## Navigation
+
+| Previous | All labs | Next |
+| --- | --- | --- |
+| None | [Learning path](../../README.md#learning-path) | [Lab 02 - Terraform Reusable Modules](../02-terraform-reusable-modules/README.md) |
