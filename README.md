@@ -11,8 +11,9 @@
 | Lab | Level | Focus | Status |
 | --- | --- | --- | --- |
 | [Lab 01 - Azure Networking Fundamentals with Terraform](labs/01-azure-networking/README.md) | Beginner | Resource group, VNet, subnets, NSGs, Terraform basics | Deployed and tested |
+| [Lab 02 - Terraform Reusable Modules](labs/02-terraform-reusable-modules/README.md) | Beginner to intermediate | Local module, inputs and outputs, `for_each`, two environments | Ready to run |
 
-More labs will be added progressively, including reusable Terraform modules, GitHub Actions CI/CD, and Azure DevOps pipelines.
+More labs will be added progressively, including module versioning, GitHub Actions CI/CD, and hub and spoke networking.
 
 ## Repository standards
 

@@ -11,9 +11,10 @@ Examples:
 | Lab | Directory | Level |
 | --- | --- | --- |
 | Lab 01 - Azure Networking Fundamentals with Terraform | `labs/01-azure-networking/` | Beginner |
-| Lab 02 - Terraform Reusable Modules | `labs/02-terraform-reusable-modules/` | Beginner |
-| Lab 03 - GitHub Actions CI/CD Fundamentals | `labs/03-github-actions-cicd/` | Beginner |
-| Lab 04 - Azure Hub & Spoke Networking | `labs/04-azure-hub-spoke/` | Intermediate |
+| Lab 02 - Terraform Reusable Modules | `labs/02-terraform-reusable-modules/` | Beginner to intermediate |
+| Lab 03 - Module Versioning | `labs/03-module-versioning/` | Intermediate |
+| Lab 04 - GitHub Actions CI/CD | `labs/04-github-actions-cicd/` | Intermediate |
+| Lab 05 - Azure Hub and Spoke Networking | `labs/05-azure-hub-spoke/` | Intermediate |
 
 Lab names should be descriptive, unique within each repository, and stable after publishing. New labs can be added or reordered when needed.
 
@@ -29,6 +30,10 @@ Use Microsoft Cloud Adoption Framework [resource abbreviation recommendations](h
 | Network security group | `nsg-` | `nsg-app-dev-weu-001` |
 | Route table | `rt-` | `rt-app-dev-weu-001` |
 | Private endpoint | `pep-` | `pep-storage-dev-weu-001` |
+| Virtual network peering | `peer-` | `peer-hub-to-spoke1` |
+| Network interface | `nic-` | `nic-lab05-hub-dev-weu-001` |
+| Virtual machine | `vm-` | `vm-lab05-hub-dev-weu-001` |
+| Storage account | `st` | `stlab04tfstate` plus a unique suffix (no hyphens allowed) |
 
 **Important:** These abbreviations are recommended conventions, not Azure naming requirements. Resource-specific restrictions still apply. For example, some Azure resources do not allow hyphens.
 
