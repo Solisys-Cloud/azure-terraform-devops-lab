@@ -8,12 +8,30 @@
 
 ## Learning path
 
-| Lab | Level | Focus | Status |
-| --- | --- | --- | --- |
-| [Lab 01 - Azure Networking Fundamentals with Terraform](labs/01-azure-networking/README.md) | Beginner | Resource group, VNet, subnets, NSGs, Terraform basics | Deployed and tested |
-| [Lab 02 - Terraform Reusable Modules](labs/02-terraform-reusable-modules/README.md) | Beginner to intermediate | Local module, inputs and outputs, `for_each`, two environments | Ready to run |
+Labs are grouped in tracks. Inside a track, follow the steps in order.
 
-More labs will be added progressively, including module versioning, GitHub Actions CI/CD, and hub and spoke networking.
+### Track 1 - Terraform foundations
+
+From a first network to a versioned, reusable module.
+
+| Step | Lab | What you do | Level | Status |
+| --- | --- | --- | --- | --- |
+| 1 | [Lab 01 - Azure Networking Fundamentals with Terraform](labs/01-azure-networking/README.md) | Build a small Azure network by hand: resource group, virtual network, subnets, and network security groups. | Beginner | Deployed and tested |
+| 2 | [Lab 02 - Terraform Reusable Modules](labs/02-terraform-reusable-modules/README.md) | Turn that network into a reusable module and deploy it for two environments. | Beginner to intermediate | Deployed and tested |
+
+Planned: Lab 03 - Module Versioning.
+
+### Track 2 - DevOps and automation
+
+From a laptop to a reviewed, approved pipeline.
+
+Planned: Lab 04 - GitHub Actions CI/CD; Azure DevOps pipelines.
+
+### Track 3 - Azure architecture
+
+Network designs used in real landing zones.
+
+Planned: Lab 05 - Azure Hub and Spoke Networking; a secured application network that extends Lab 01; a Bicep version of Lab 01.
 
 ## Repository standards
 
@@ -24,11 +42,13 @@ More labs will be added progressively, including module versioning, GitHub Actio
 - Never commit secrets or Terraform state files.
 - Azure deployment is always manual and explicitly approved; no automated deployment is configured.
 
-## Lab 01 visual overview
+## Visual overview
 
 ![Lab 01 - Azure networking training architecture](labs/01-azure-networking/docs/images/architecture.svg)
 
-*Illustrative teaching architecture. Not a production network reference design.*
+![Lab 02 - One network module called for two environments](labs/02-terraform-reusable-modules/docs/images/architecture.svg)
+
+*Illustrative teaching architectures. Not production network reference designs.*
 
 ## Disclaimer
 

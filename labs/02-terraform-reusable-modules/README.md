@@ -4,7 +4,8 @@
 **Technology:** Azure, Terraform  
 **Focus:** Modules, inputs and outputs, `for_each`, reuse  
 **Prerequisite:** [Lab 01](../01-azure-networking/README.md)  
-**Status:** Ready to run in a lab subscription
+**Track:** Terraform foundations, step 2  
+**Status:** Deployed and tested in a lab subscription
 
 ## Goal
 
@@ -13,6 +14,10 @@ Write the network once as a **module**, then call it twice with different values
 In Lab 01, every resource was written by hand. Here the same network becomes a reusable building block.
 
 ## What you build
+
+![Lab 02 - One network module called for two environments](docs/images/architecture.svg)
+
+*Diagram: the root configuration calls the network module twice, once per environment. Educational scope only.*
 
 | Environment | Resource group | Virtual network | Subnets |
 | --- | --- | --- | --- |
@@ -168,3 +173,9 @@ Continue with the [guided exercises and challenges](docs/exercises.md).
 - [Module blocks](https://developer.hashicorp.com/terraform/language/modules/syntax)
 - [The for_each meta-argument](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each)
 - [Input variable validation](https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules)
+
+## Navigation
+
+| Previous | All labs | Next |
+| --- | --- | --- |
+| [Lab 01 - Azure Networking Fundamentals with Terraform](../01-azure-networking/README.md) | [Learning path](../../README.md#learning-path) | Lab 03 - Module Versioning (planned) |

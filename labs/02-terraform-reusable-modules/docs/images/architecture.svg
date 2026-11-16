@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">Lab 02 - Terraform Reusable Modules</title>
+  <desc id="desc">A root configuration calls the same network module twice. Each call creates a virtual network, two subnets, and one network security group per subnet, in its own resource group: one for dev and one for tst. This is a learning exercise, not a production reference design.</desc>
+  <rect width="1200" height="640" fill="#f8fbff"/>
+  <rect x="28" y="24" width="1144" height="592" rx="24" fill="white" stroke="#e1e9f3" stroke-width="2"/>
+  <text x="58" y="72" fill="#0c2646" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="29">Lab 02 - Terraform Reusable Modules</text>
+  <text x="58" y="105" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="19">Write the network once, deploy it twice</text>
+  <rect x="930" y="49" width="214" height="38" rx="19" fill="#e8f2ff"/>
+  <text x="1037" y="74" text-anchor="middle" fill="#175ba4" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">MODULES LAB</text>
+  <rect x="61" y="150" width="300" height="400" rx="18" fill="#f7faff" stroke="#7994af" stroke-width="2"/>
+  <text x="81" y="188" fill="#12518b" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Root configuration</text>
+  <text x="81" y="214" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="15">where you run terraform</text>
+  <rect x="81" y="240" width="260" height="126" rx="12" fill="white" stroke="#c9d8e8" stroke-width="2"/>
+  <text x="97" y="270" fill="#0c2646" font-family="Consolas, Menlo, monospace" font-size="16" font-weight="700">module "network_dev"</text>
+  <text x="97" y="298" fill="#34506c" font-family="Consolas, Menlo, monospace" font-size="14">source = ./modules/network</text>
+  <text x="97" y="322" fill="#34506c" font-family="Consolas, Menlo, monospace" font-size="14">address_space = 10.20.0.0/16</text>
+  <text x="97" y="346" fill="#34506c" font-family="Consolas, Menlo, monospace" font-size="14">subnets = { app, mgmt }</text>
+  <rect x="81" y="390" width="260" height="126" rx="12" fill="white" stroke="#c9d8e8" stroke-width="2"/>
+  <text x="97" y="420" fill="#0c2646" font-family="Consolas, Menlo, monospace" font-size="16" font-weight="700">module "network_tst"</text>
+  <text x="97" y="448" fill="#34506c" font-family="Consolas, Menlo, monospace" font-size="14">source = ./modules/network</text>
+  <text x="97" y="472" fill="#34506c" font-family="Consolas, Menlo, monospace" font-size="14">address_space = 10.21.0.0/16</text>
+  <text x="97" y="496" fill="#34506c" font-family="Consolas, Menlo, monospace" font-size="14">subnets = { app, mgmt }</text>
+  <rect x="451" y="205" width="290" height="300" rx="18" fill="#e9f3ff" stroke="#2e77be" stroke-width="2"/>
+  <text x="471" y="243" fill="#12518b" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">modules/network</text>
+  <text x="471" y="269" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="15">the reusable building block</text>
+  <rect x="471" y="296" width="250" height="34" rx="9" fill="white" stroke="#c9d8e8" stroke-width="1.5"/>
+  <text x="485" y="319" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="15">1 virtual network</text>
+  <rect x="471" y="340" width="250" height="34" rx="9" fill="white" stroke="#c9d8e8" stroke-width="1.5"/>
+  <text x="485" y="363" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="15">1 subnet per map entry</text>
+  <rect x="471" y="384" width="250" height="34" rx="9" fill="white" stroke="#c9d8e8" stroke-width="1.5"/>
+  <text x="485" y="407" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="15">1 NSG per subnet</text>
+  <rect x="471" y="428" width="250" height="34" rx="9" fill="white" stroke="#c9d8e8" stroke-width="1.5"/>
+  <text x="485" y="451" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="15">1 association per subnet</text>
+  <text x="596" y="490" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">inputs in, outputs back</text>
+  <rect x="831" y="140" width="308" height="200" rx="18" fill="#eefaf8" stroke="#0c9487" stroke-width="2" stroke-dasharray="9 6"/>
+  <text x="851" y="172" fill="#0c2646" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">rg-lab02-network-dev-weu-001</text>
+  <text x="851" y="196" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="13">vnet-lab02-network-dev-weu-001  10.20.0.0/16</text>
+  <rect x="851" y="212" width="268" height="48" rx="10" fill="white" stroke="#c9d8e8" stroke-width="1.5"/>
+  <text x="865" y="232" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700">snet-app-dev-weu-001  10.20.1.0/24</text>
+  <text x="865" y="251" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="13">nsg-app-dev-weu-001</text>
+  <rect x="851" y="270" width="268" height="48" rx="10" fill="white" stroke="#c9d8e8" stroke-width="1.5"/>
+  <text x="865" y="290" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700">snet-mgmt-dev-weu-001  10.20.2.0/24</text>
+  <text x="865" y="309" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="13">nsg-mgmt-dev-weu-001</text>
+  <rect x="831" y="370" width="308" height="200" rx="18" fill="#fff8ea" stroke="#b7791f" stroke-width="2" stroke-dasharray="9 6"/>
+  <text x="851" y="402" fill="#0c2646" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">rg-lab02-network-tst-weu-001</text>
+  <text x="851" y="426" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="13">vnet-lab02-network-tst-weu-001  10.21.0.0/16</text>
+  <rect x="851" y="442" width="268" height="48" rx="10" fill="white" stroke="#c9d8e8" stroke-width="1.5"/>
+  <text x="865" y="462" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700">snet-app-tst-weu-001  10.21.1.0/24</text>
+  <text x="865" y="481" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="13">nsg-app-tst-weu-001</text>
+  <rect x="851" y="500" width="268" height="48" rx="10" fill="white" stroke="#c9d8e8" stroke-width="1.5"/>
+  <text x="865" y="520" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700">snet-mgmt-tst-weu-001  10.21.2.0/24</text>
+  <text x="865" y="539" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="13">nsg-mgmt-tst-weu-001</text>
+  <defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto"><path d="M3 2 L13 8 L3 14" fill="none" stroke="#8194ab" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+  <path d="M341 303 L446 330" stroke="#8194ab" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+  <path d="M341 453 L446 400" stroke="#8194ab" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+  <path d="M741 320 L826 250" stroke="#8194ab" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+  <path d="M741 400 L826 470" stroke="#8194ab" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+  <text x="394" y="292" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">call 1</text>
+  <text x="394" y="476" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">call 2</text>
+  <text x="600" y="592" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle">16 resources: 2 resource groups, then 7 per environment (1 virtual network, 2 subnets, 2 NSGs, 2 associations)</text>
+</svg>
