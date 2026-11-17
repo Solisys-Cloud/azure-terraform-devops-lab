@@ -13,7 +13,7 @@ Examples:
 | Lab 01 - Azure Networking Fundamentals with Terraform | `labs/01-azure-networking/` | Beginner |
 | Lab 02 - Terraform Reusable Modules | `labs/02-terraform-reusable-modules/` | Beginner to intermediate |
 | Lab 03 - Module Versioning | `labs/03-module-versioning/` | Intermediate |
-| Lab 04 - GitHub Actions CI/CD | `labs/04-github-actions-cicd/` | Intermediate |
+| Lab 04 - Terraform CI/CD with Azure Pipelines | `labs/04-azure-devops-cicd/` | Intermediate |
 | Lab 05 - Azure Hub and Spoke Networking | `labs/05-azure-hub-spoke/` | Intermediate |
 
 Lab names should be descriptive, unique within each repository, and stable after publishing. New labs can be added or reordered when needed.

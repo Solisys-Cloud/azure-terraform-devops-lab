@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+<title id="title">Lab 04 - Terraform CI/CD with Azure Pipelines</title>
+<desc id="desc">Code on GitHub triggers an Azure Pipelines run. The Plan stage checks formatting, validates and plans. On main, the run waits for a human approval, then the Apply stage applies the saved plan to Azure. Authentication uses workload identity federation and the Terraform state is stored in Azure Storage.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="context-stroke" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect width="1200" height="640" fill="#f8fbff"/>
+<rect x="28" y="24" width="1144" height="592" rx="24" fill="white" stroke="#e1e9f3" stroke-width="2"/>
+<text x="58" y="72" fill="#0c2646" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="29">Lab 04 · Terraform CI/CD with Azure Pipelines</text>
+<text x="58" y="105" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="19">Plan on every pull request, apply only after approval</text>
+<rect x="930" y="49" width="214" height="38" rx="19" fill="#e8f2ff"/>
+<text x="1037" y="74" text-anchor="middle" fill="#175ba4" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">INTERMEDIATE LAB</text>
+<rect x="58" y="170" width="200" height="96" rx="14" fill="#f2f5f9" stroke="#7994af" stroke-width="2"/><text x="158.0" y="212.0" text-anchor="middle" fill="#0c2646" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">GitHub</text><text x="158.0" y="236.0" text-anchor="middle" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="14">Pull request or merge</text>
+<line x1="262" y1="218" x2="316" y2="218" stroke="#7994af" stroke-width="2.5" marker-end="url(#a)"/>
+<rect x="320" y="140" width="820" height="160" rx="18" fill="#f7faff" stroke="#7994af" stroke-width="2" stroke-dasharray="9 6"/>
+<rect x="340" y="124" width="300" height="32" rx="10" fill="#e8f2ff"/>
+<text x="354" y="146" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Azure Pipelines · azure-pipelines.yml</text>
+<rect x="350" y="180" width="230" height="96" rx="14" fill="#e8f2ff" stroke="#378add" stroke-width="2"/><text x="465.0" y="222.0" text-anchor="middle" fill="#0c2646" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Plan stage</text><text x="465.0" y="246.0" text-anchor="middle" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="14">fmt · validate · plan</text>
+<line x1="584" y1="228" x2="632" y2="228" stroke="#7994af" stroke-width="2.5" marker-end="url(#a)"/>
+<rect x="636" y="180" width="210" height="96" rx="14" fill="#fff4e5" stroke="#ba7517" stroke-width="2"/><text x="741.0" y="210.0" text-anchor="middle" fill="#633806" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Approval</text><text x="741.0" y="232.0" text-anchor="middle" fill="#854f0b" font-family="Arial, Helvetica, sans-serif" font-size="14">Environment lab04-dev</text><text x="741.0" y="256.0" text-anchor="middle" fill="#854f0b" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700">main branch only</text>
+<line x1="850" y1="228" x2="898" y2="228" stroke="#7994af" stroke-width="2.5" marker-end="url(#a)"/>
+<rect x="902" y="180" width="214" height="96" rx="14" fill="#e7f6ef" stroke="#1d9e75" stroke-width="2"/><text x="1009.0" y="222.0" text-anchor="middle" fill="#085041" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Apply stage</text><text x="1009.0" y="246.0" text-anchor="middle" fill="#0f6e56" font-family="Arial, Helvetica, sans-serif" font-size="14">Saved plan only</text>
+<rect x="350" y="420" width="260" height="104" rx="14" fill="#f2f5f9" stroke="#7994af" stroke-width="2"/><text x="480.0" y="466.0" text-anchor="middle" fill="#0c2646" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Service connection</text><text x="480.0" y="490.0" text-anchor="middle" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="14">Workload identity federation</text>
+<rect x="640" y="420" width="230" height="104" rx="14" fill="#f2f5f9" stroke="#7994af" stroke-width="2"/><text x="755.0" y="466.0" text-anchor="middle" fill="#0c2646" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Terraform state</text><text x="755.0" y="490.0" text-anchor="middle" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="14">Azure Storage · Entra ID</text>
+<rect x="900" y="420" width="216" height="104" rx="14" fill="#e7f6ef" stroke="#1d9e75" stroke-width="2"/><text x="1008.0" y="466.0" text-anchor="middle" fill="#085041" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Azure</text><text x="1008.0" y="490.0" text-anchor="middle" fill="#0f6e56" font-family="Arial, Helvetica, sans-serif" font-size="14">8 lab resources</text>
+<line x1="465" y1="282" x2="465" y2="414" stroke="#378add" stroke-width="2.5" marker-end="url(#a)"/>
+<line x1="755" y1="300" x2="755" y2="414" stroke="#7994af" stroke-width="2.5" marker-end="url(#a)"/>
+<line x1="1009" y1="280" x2="1009" y2="414" stroke="#1d9e75" stroke-width="2.5" marker-end="url(#a)"/>
+<text x="58" y="470" fill="#23496d" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">No secret stored</text>
+<text x="58" y="494" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="14">No password, client secret</text>
+<text x="58" y="514" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="14">or storage key anywhere</text>
+<text x="600" y="584" text-anchor="middle" fill="#49627c" font-family="Arial, Helvetica, sans-serif" font-size="14" font-style="italic">Illustrative teaching diagram. Not a production reference design.</text>
+</svg>

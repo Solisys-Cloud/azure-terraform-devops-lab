@@ -1,0 +1,157 @@
+# Lab 04 - Terraform CI/CD with Azure Pipelines
+#
+# Pull request to main : format, validate and plan. Nothing is deployed.
+# Push to main         : the same checks, then a human approval, then apply.
+#
+# Authentication: workload identity federation (OpenID Connect).
+# No password, client secret or storage key is stored anywhere.
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - labs/04-azure-devops-cicd
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - labs/04-azure-devops-cicd
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  # Azure Resource Manager service connection (workload identity federation).
+  serviceConnection: Azure-Dev-Test
+  # Azure DevOps environment. Its approval check is the deployment gate.
+  environmentName: lab04-dev
+  terraformVersion: 1.9.8
+  workingDirectory: $(System.DefaultWorkingDirectory)/labs/04-azure-devops-cicd
+  # Remote state. Replace the storage account name with your own.
+  tfStateResourceGroup: rg-tfstate-lab
+  tfStateStorageAccount: sttfstate57594
+  tfStateContainer: tfstate
+  tfStateKey: lab04-azure-devops-cicd.tfstate
+
+stages:
+  - stage: Plan
+    displayName: Validate and plan
+    jobs:
+      - job: Plan
+        displayName: Format, validate and plan
+        steps:
+          - bash: |
+              set -euo pipefail
+              curl -fsSL -o terraform.zip "https://releases.hashicorp.com/terraform/$(terraformVersion)/terraform_$(terraformVersion)_linux_amd64.zip"
+              unzip -o -q terraform.zip -d "$(Agent.ToolsDirectory)/terraform"
+              echo "##vso[task.prependpath]$(Agent.ToolsDirectory)/terraform"
+            displayName: Install Terraform ${{ variables.terraformVersion }}
+            workingDirectory: $(Agent.TempDirectory)
+
+          - bash: |
+              terraform version
+              terraform fmt -check -recursive
+            displayName: Check formatting
+            workingDirectory: $(workingDirectory)
+
+          - task: AzureCLI@2
+            displayName: Initialize, validate and plan
+            inputs:
+              azureSubscription: ${{ variables.serviceConnection }}
+              scriptType: bash
+              scriptLocation: inlineScript
+              addSpnToEnvironment: true
+              workingDirectory: $(workingDirectory)
+              inlineScript: |
+                set -euo pipefail
+                export ARM_USE_OIDC=true
+                export ARM_CLIENT_ID="$servicePrincipalId"
+                export ARM_TENANT_ID="$tenantId"
+                export ARM_OIDC_TOKEN="$idToken"
+                export ARM_SUBSCRIPTION_ID="$(az account show --query id --output tsv)"
+
+                terraform init -input=false -no-color \
+                  -backend-config="resource_group_name=$(tfStateResourceGroup)" \
+                  -backend-config="storage_account_name=$(tfStateStorageAccount)" \
+                  -backend-config="container_name=$(tfStateContainer)" \
+                  -backend-config="key=$(tfStateKey)" \
+                  -backend-config="use_azuread_auth=true"
+
+                terraform validate -no-color
+                terraform plan -input=false -no-color -out=tfplan
+
+          # The plan and the provider lock file travel together to the Apply stage,
+          # so that exactly what was reviewed is what gets applied.
+          - bash: |
+              set -euo pipefail
+              mkdir -p "$(Build.ArtifactStagingDirectory)/plan"
+              cp tfplan "$(Build.ArtifactStagingDirectory)/plan/tfplan"
+              cp .terraform.lock.hcl "$(Build.ArtifactStagingDirectory)/plan/terraform.lock.hcl"
+            displayName: Collect the plan
+            workingDirectory: $(workingDirectory)
+
+          - publish: $(Build.ArtifactStagingDirectory)/plan
+            artifact: tfplan
+            displayName: Publish the plan
+
+  - stage: Apply
+    displayName: Approve and apply
+    dependsOn: Plan
+    # Never deploy from a pull request or from another branch.
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables['Build.Reason'], 'PullRequest'))
+    jobs:
+      - deployment: Apply
+        displayName: Apply the approved plan
+        # The run waits here until an approver accepts it in Azure DevOps.
+        environment: ${{ variables.environmentName }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                - bash: |
+                    set -euo pipefail
+                    curl -fsSL -o terraform.zip "https://releases.hashicorp.com/terraform/$(terraformVersion)/terraform_$(terraformVersion)_linux_amd64.zip"
+                    unzip -o -q terraform.zip -d "$(Agent.ToolsDirectory)/terraform"
+                    echo "##vso[task.prependpath]$(Agent.ToolsDirectory)/terraform"
+                  displayName: Install Terraform ${{ variables.terraformVersion }}
+                  workingDirectory: $(Agent.TempDirectory)
+
+                # Deployment jobs download the run's artifacts to $(Pipeline.Workspace).
+                - bash: |
+                    set -euo pipefail
+                    cp "$(Pipeline.Workspace)/tfplan/tfplan" tfplan
+                    cp "$(Pipeline.Workspace)/tfplan/terraform.lock.hcl" .terraform.lock.hcl
+                  displayName: Restore the reviewed plan
+                  workingDirectory: $(workingDirectory)
+
+                - task: AzureCLI@2
+                  displayName: Apply
+                  inputs:
+                    azureSubscription: ${{ variables.serviceConnection }}
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    addSpnToEnvironment: true
+                    workingDirectory: $(workingDirectory)
+                    inlineScript: |
+                      set -euo pipefail
+                      export ARM_USE_OIDC=true
+                      export ARM_CLIENT_ID="$servicePrincipalId"
+                      export ARM_TENANT_ID="$tenantId"
+                      export ARM_OIDC_TOKEN="$idToken"
+                      export ARM_SUBSCRIPTION_ID="$(az account show --query id --output tsv)"
+
+                      terraform init -input=false -no-color \
+                        -backend-config="resource_group_name=$(tfStateResourceGroup)" \
+                        -backend-config="storage_account_name=$(tfStateStorageAccount)" \
+                        -backend-config="container_name=$(tfStateContainer)" \
+                        -backend-config="key=$(tfStateKey)" \
+                        -backend-config="use_azuread_auth=true"
+
+                      terraform apply -input=false -no-color tfplan
