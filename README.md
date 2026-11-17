@@ -24,7 +24,9 @@ From a first network to a versioned, reusable module.
 
 From a laptop to a reviewed, approved pipeline.
 
-Planned: Lab 04 - GitHub Actions CI/CD; Azure DevOps pipelines.
+| Step | Lab | What you do | Level | Status |
+| --- | --- | --- | --- | --- |
+| 4 | [Lab 04 - Terraform CI/CD with Azure Pipelines](labs/04-azure-devops-cicd/README.md) | Plan on every pull request, then apply after approval, with remote state and workload identity federation. | Intermediate | Ready to run |
 
 ### Track 3 - Azure architecture
 
@@ -39,13 +41,15 @@ Planned: Lab 05 - Azure Hub and Spoke Networking; a secured application network 
 - All content is written in English.
 - Each lab is designed as a tutorial, not merely a collection of scripts.
 - Never commit secrets or Terraform state files.
-- Azure deployment is always manual and explicitly approved; no automated deployment is configured.
+- Azure deployment always requires an explicit human decision: manual commands in Labs 01 to 03, an approval gate in the Lab 04 pipeline. Pull requests never deploy.
 
 ## Visual overview
 
 ![Lab 01 - Azure networking training architecture](labs/01-azure-networking/docs/images/architecture.svg)
 
 ![Lab 02 - One network module called for two environments](labs/02-terraform-reusable-modules/docs/images/architecture.svg)
+
+![Lab 04 - Terraform delivery pipeline](labs/04-azure-devops-cicd/docs/images/pipeline.svg)
 
 *Illustrative teaching architectures. Not production network reference designs.*
 
